@@ -18,11 +18,22 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <h1><%= link_to "Buy Our Stuff", root_path %></h1>
+      <h3>Make Us Rich</h3>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+      <hr>
+      <p><span>🐐</span> Goats in Coats <span>🧥</span> - Copywrong <%= Time.current.year %></p>
+    </footer>
   </body>
 </html>
