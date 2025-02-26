@@ -1,0 +1,12 @@
+  <aside>
+    <% if product.image.present? %>
+      <p><%= image_tag product.image.variant(resize_to_limit: [285, 285]).processed  %></p>
+    <% end %>
+    <h3><%= link_to product.name, product %></h3>
+    <p>Price: <%= number_to_currency product.price_cents / 100.0 %></p>
+    <p><%= product.description %></p>
+    <%= form_with url: checkout_create_path, method: :post do %>
+      <%= hidden_field_tag(:product_id, product.id, autocomplete: "off") %>
+      <%= button_tag "Buy Now 💳" %>
+    <% end %>
+  </aside>
