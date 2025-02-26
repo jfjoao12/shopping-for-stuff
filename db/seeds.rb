@@ -1,9 +1,18 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require "uri"
+require "open-uri"
+
+Product.delete_all
+
+image_client = Pexels::Client.new
+
+39.times do
+  p = Product.create(name:        Faker::Commerce.unique.product_name,
+                     price_cents: rand(5000..100_000).to_i,
+                     description: Faker::Hipster.sentence(word_count: rand(4..8)))
+
+  puts "Creating #{p.name}"
+
+  pexel_response = image_client.photos.search(p.name)
+  downloaded_image = URI.parse(pexel_response.photos[0].src["medium"]).open
+  p.image.attach(io: downloaded_image, filename: "m-#{p.name}.jpg")
+end
