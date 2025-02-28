@@ -44,6 +44,7 @@ gem "rubocop"
 gem "faker"
 gem "pexels"
 gem "image_processing"
+gem "stripe"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

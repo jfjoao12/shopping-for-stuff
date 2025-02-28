@@ -7,6 +7,6 @@
     <p><%= product.description %></p>
     <%= form_with url: checkout_create_path, method: :post do %>
       <%= hidden_field_tag(:product_id, product.id, autocomplete: "off") %>
-      <%= button_tag "Buy Now 💳" %>
+      <%= button_tag "Buy Now 💳", data: { turbo: false} %>
     <% end %>
   </aside>
