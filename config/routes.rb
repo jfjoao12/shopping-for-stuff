@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cart, only: [ :create, :destroy]
   resources :products, only: [ :index, :show ]
   scope "/checkout" do
     post "create", to: "checkout#create", as: "checkout_create"
